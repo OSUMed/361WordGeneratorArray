@@ -1,5 +1,5 @@
-var randomWord = require("random-word-by-length");
 const express = require("express");
+var randomWord = require("random-word-by-length");    // We use this NPM package which stores a number of common english words
 
 // Initialize the app and create a port
 const app = express();
@@ -39,9 +39,6 @@ app.get("/amount/:numberOfWords/length/:wordsLength", function (req, res) {
 
   res.send(words);
 });
-
-const hostname = "http://flip3.engr.oregonstate.edu:";
-const port = 5152;
 
 // Start the server on the port
 app.listen(PORT, () => console.log(`Listening on PORT: ${PORT}`));
