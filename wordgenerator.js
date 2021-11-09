@@ -5,6 +5,7 @@ const express = require("express");
 const app = express();
 const PORT = process.env.PORT || 5152;
 
+// Backup function to generate a single word
 function randomWordList(numb) {
   return randomWord(numb);
 }
@@ -16,15 +17,17 @@ app.use(function(req, res, next) {
   next();
 });
 
-app.get("/test", function (req, res) {
-  let test = randomWordList(4)
-  res.send(test);
-});
-
+// Main service that supplies the get request: The words amount and length are the keys and the values can be chosen by the user: the number of words or the words length needed:
 app.get("/amount/:numberOfWords/length/:wordsLength", function (req, res) {
-  let words = []; 
+  
+  // A list to hold our words. The user will then get this list for them to iterate through:
+  let words = [];
+
+  // Changes the string paramater request so our forloop can create an interation with it:
   let amount;
   amount = Number(req.params.numberOfWords);
+
+  // A place to store the randomely geenerated word:
   let word;
 
   for (let i = 0; i < amount; i++) {
