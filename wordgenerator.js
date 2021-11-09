@@ -5,17 +5,17 @@ var randomWord = require("random-word-by-length");    // We use this NPM package
 const app = express();
 const PORT = process.env.PORT || 5152;
 
-// Backup function to generate a single word
-function randomWordList(numb) {
-  return randomWord(numb);
-}
-
 //Fixed Header error from this code bit from StackOverflow: https://stackoverflow.com/questions/20035101/why-does-my-javascript-code-receive-a-no-access-control-allow-origin-header-i
 app.use(function(req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
   next();
 });
+
+// Function we call which generates the actual random word and then returns it
+function randomWordList(numb) {
+  return randomWord(numb);
+}
 
 // Main service that supplies the get request: The words amount and length are the keys and the values can be chosen by the user: the number of words or the words length needed:
 app.get("/amount/:numberOfWords/length/:wordsLength", function (req, res) {
