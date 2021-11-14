@@ -21,15 +21,16 @@ function randomWordList(numb) {
 app.get("/amount/:numberOfWords/length/:wordsLength", function (req, res) {
   
   // A list to hold our words. The user will then get this list for them to iterate through:
-  let words = [];
+  let words = []; 
 
-  // Changes the string paramater request so our forloop can create an interation with it:
+  // Changes the data type of the string paramater request so our forloop can create an interation with it:
   let amount;
   amount = Number(req.params.numberOfWords);
 
   // A place to store the randomely geenerated word:
   let word;
 
+  // Iterate through the length of amount and one by one generate a user requested length of a word and then push it into our list:
   for (let i = 0; i < amount; i++) {
     word = randomWordList(Number(req.params.wordsLength));
     console.log("The number is: ", word);
